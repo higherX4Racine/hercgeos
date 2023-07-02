@@ -12,5 +12,6 @@
 fix_old_geoids <- function(.features){
     dplyr::rename_with(.features,
                        .fn = ~ "GEOID",
-                       .cols = tidyselect::contains("IDFP"))
+                       .cols = tidyselect::contains("IDFP",
+                                                    ignore.case = FALSE))
 }
