@@ -4,9 +4,9 @@
 #' For example, a county subdivision shapefile would have a field named "COSBIDFP."
 #' This function renames any field that includes "IDFP" to "GEOID."
 #'
-#' @param .features a simple features object
+#' @param .features a tibble
 #'
-#' @return the same object, but with one column possibly renamed.
+#' @return the same tibble, but with one column possibly renamed.
 #' @export
 #'
 fix_old_geoids <- function(.features){

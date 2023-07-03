@@ -7,10 +7,10 @@
 fix_old_geoids(.features)
 }
 \arguments{
-\item{.features}{a simple features object}
+\item{.features}{a tibble}
 }
 \value{
-the same object, but with one column possibly renamed.
+the same tibble, but with one column possibly renamed.
 }
 \description{
 Older (pre-2010) shapefiles have geography-specific names for their GEOID fields.

@@ -4,9 +4,9 @@
 #' year appended to the ends of their fields. This function removes all trailing
 #' digits from each field name.
 #'
-#' @param .features a simple features object
+#' @param .features a tibble
 #'
-#' @return the same object, but with some fields possibly renamed.
+#' @return the same tibble, but with some fields possibly renamed.
 #' @export
 fix_old_year_suffixes <- function(.features){
     dplyr::rename_with(.features,
