@@ -5,14 +5,16 @@
 #' That is especially true for things like blocks and tracts.
 #' This function condenses both into NAME but doesn't remove NAMELSAD.
 #' It prefers the values from NAMELSAD, if they are different.
+#' Both NAME and NAMELSAD are removed.
 #'
 #' @param .features any tibble with NAME and NAMELSAD features.
 #'
-#' @return a tibble with an additional column, "Name".
+#' @return a tibble with an additional column, "Name," and neither "NAME" nor "NAMELSAD"
 #' @export
 fix_names_by_coalescing <- function(.features){
     dplyr::mutate(.features,
                   Name = dplyr::coalesce(.data$NAMELSAD,
-                                         .data$NAME)
+                                         .data$NAME),
+                  .keep = "unused"
     )
 }
