@@ -1,0 +1,22 @@
+#' Filter one or more geometries by a reference geometry using a single geometric predicate.
+#'
+#' @param .target_geoms A table of one or more to-be-filtered simple features.
+#' @param .reference_geom A single simple feature that the targets will be compared to.
+#' @param .predicate A <[binary geometric predicate][sf::geos_binary_pred]>
+#' @param ...  <[`dynamic-dots`][rlang::dyn-dots]> arguments for [selecting][tidyselect::language] columns from `.target_geoms`
+#'
+#' @return a subset of `.target_geoms` that meets the criteria represented by `.reference_geom` and `.predicate`
+#' @export
+geometry_filter <- function(.target_geoms, .reference_geom, .predicate, ...){
+    .target_geoms |>
+        dplyr::select(
+            ...
+        ) |>
+        dplyr::filter(
+            .data$geometry |>
+                .predicate(.reference_geom,
+                           sparse = FALSE) |>
+                as.logical()
+        ) |>
+        sf::st_drop_geometry()
+}
