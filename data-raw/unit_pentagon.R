@@ -1,14 +1,14 @@
-## code to prepare `unit_pentagon` dataset goes here
+## code to prepare `UNIT_PENTAGON` dataset goes here
 
 theta <- c(0, 1, 2, 3, 4, 0) * 2 * pi / 5
-unit_pentagon <- matrix(c(cos(theta),
+UNIT_PENTAGON <- matrix(c(cos(theta),
                           sin(theta)),
                         nrow = 6)
-unit_pentagon <- unit_pentagon |>
+UNIT_PENTAGON <- UNIT_PENTAGON |>
     list() |>
     sf::st_polygon() |>
     sf::st_sfc()
 
-unit_pentagon <- unit_pentagon / sqrt(st_area(unit_pentagon))
+UNIT_PENTAGON <- UNIT_PENTAGON / sqrt(sf::st_area(UNIT_PENTAGON))
 
-usethis::use_data(unit_pentagon, overwrite = TRUE)
+usethis::use_data(UNIT_PENTAGON, overwrite = TRUE)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/geoid_to_tract_id.R
 \name{geoid_to_tract_id}
 \alias{geoid_to_tract_id}
-\title{Extract the 4- or 6-digit tract codes from full census GEOID}
+\title{Extract the 4- or 6-digit tract codes from full census GEOID values}
 \usage{
 geoid_to_tract_id(.geoids, .years)
 }
@@ -15,7 +15,7 @@ geoid_to_tract_id(.geoids, .years)
 a character vector of zero-padded 4- or 6-digit tract codes
 }
 \description{
-Extract the 4- or 6-digit tract codes from full census GEOID
+Extract the 4- or 6-digit tract codes from full census GEOID values
 }
 \examples{
 geoid_to_tract_id("551010001001101", c(2000L, 2010L, 2020L))

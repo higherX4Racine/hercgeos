@@ -53,4 +53,4 @@
 "NASHVILLE_NH"
 
 #' An `sfc` object with one five-sided polygon whose are is one.
-"unit_pentagon"
+"UNIT_PENTAGON"

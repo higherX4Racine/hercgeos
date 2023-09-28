@@ -1,4 +1,4 @@
-#' Extract the 4- or 6-digit tract codes from full census GEOID
+#' Extract the 4- or 6-digit tract codes from full census GEOID values
 #'
 #' @param .geoids a vector of GEOIDs for blocks, block groups, or tracts.
 #' @param .years the census vintage year, as an integer, for each GEOID

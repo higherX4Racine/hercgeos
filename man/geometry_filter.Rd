@@ -29,9 +29,9 @@ geometric predicate.
 \examples{
 library(sf)
 targets <- st_sf(label = letters[1:3],
-                 geometry = c(unit_pentagon + c(1, 1),
-                              unit_pentagon + c(2, 2),
-                              unit_pentagon + c(3, 3)),
+                 geometry = c(UNIT_PENTAGON + c(1, 1),
+                              UNIT_PENTAGON + c(2, 2),
+                              UNIT_PENTAGON + c(3, 3)),
                  sf_column_name = "geometry")
-geometry_filter(targets, unit_pentagon, st_intersects, "label")
+geometry_filter(targets, UNIT_PENTAGON, st_intersects, "label")
 }
