@@ -19,3 +19,6 @@ a tibble that is also a simple features object.
 \description{
 Load geographies from many shapefiles into a tibble of simple features
 }
+\seealso{
+\code{\link[=read_tigershapes]{read_tigershapes()}}
+}

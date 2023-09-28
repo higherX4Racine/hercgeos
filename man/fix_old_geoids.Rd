@@ -7,13 +7,20 @@
 fix_old_geoids(.features)
 }
 \arguments{
-\item{.features}{a tibble}
+\item{.features}{a data frame}
 }
 \value{
-the same tibble, but with one column possibly renamed.
+the same data frame, but with one column possibly renamed.
 }
 \description{
-Older (pre-2010) shapefiles have geography-specific names for their GEOID fields.
-For example, a county subdivision shapefile would have a field named "COSBIDFP."
-This function renames any field that includes "IDFP" to "GEOID."
+Older (pre-2010) shapefiles have geography-specific names for their GEOID
+fields. For example, a county subdivision shapefile would have a field named
+"COSBIDFP." This function renames any field that includes "IDFP" to "GEOID."
+}
+\examples{
+data.frame(
+  COSIBIDFP = c("55100", "55101", "551012")
+) |>
+fix_old_geoids()
+
 }

@@ -23,3 +23,8 @@ a <\link[sf:sf]{sf::sf}> object
 \description{
 Transform native TIGER/Line lat-long features to UTM features
 }
+\seealso{
+\code{\link[=central_utm]{central_utm()}}
+
+\code{\link[=utm_crs]{utm_crs()}}
+}

@@ -1,8 +1,10 @@
 #' Identify census blocks that are all water
 #'
 #' @param .features a simple features table
-#' @param .water_area_label optional, the column that describes water area, defaults to "AWATER"
-#' @param .land_area_label optional, the column that describes land area, defaults to "ALAND"
+#' @param .water_area_label optional, the column that describes water area,
+#'   defaults to "AWATER"
+#' @param .land_area_label optional, the column that describes land area,
+#'   defaults to "ALAND"
 #'
 #' @return a logical vector that is `TRUE` for water areas
 #' @export
@@ -13,11 +15,14 @@ is_water <- function(.features,
         .features[[.land_area_label]] == 0
 }
 
-#' Create a factor of terrains based on census reporting of water area and land use.
+#' Create a factor of terrains based on census reporting of water area and land
+#' use.
 #'
 #' @param .blocks a simple features table from TIGER/Line
+#' @param ...  <[`dynamic-dots`][rlang::dyn-dots]> additional arguments to pass to [is_water()]
 #'
-#' @return a factor with three levels, the names of [hercgeos::hercgeos::TERRAIN_COLORS]
+#' @return a factor with three levels, the names of [TERRAIN_COLORS]
+#' @seealso [is_water()]
 #' @export
 terrain_factor <- function(.blocks, ...){
     factor(

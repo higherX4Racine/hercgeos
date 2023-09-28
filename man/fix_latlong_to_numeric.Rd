@@ -13,7 +13,15 @@ fix_latlong_to_numeric(.features)
 the same tibble, but with those fields converted to numbers
 }
 \description{
-The census fields of "INTPTLAT" and "INTPTLON" contain "+" and "-" characters.
-For this reason, \code{sf::read_sf} interprets them as character, not numeric, columns.
-This function rectifies that.
+The census fields of "INTPTLAT" and "INTPTLON" contain "+" and "-"
+characters. For this reason, \code{sf::read_sf} interprets them as character, not
+numeric, columns. This function rectifies that.
+}
+\examples{
+data.frame(
+  INTPTLAT = c("-4.4", "+3.3", "-2.2", "+1.1"),
+  INTPTLON = c(3, 1, 4, 1)
+) |>
+fix_latlong_to_numeric()
+
 }

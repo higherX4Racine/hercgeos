@@ -15,3 +15,7 @@ a simple features table with one entry per geography
 \description{
 Import data from US Census TIGER/Line shapefiles
 }
+\examples{
+library(sf)
+
+}

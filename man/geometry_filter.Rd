@@ -2,22 +2,36 @@
 % Please edit documentation in R/geometry_filter.R
 \name{geometry_filter}
 \alias{geometry_filter}
-\title{Filter one or more geometries by a reference geometry using a single geometric predicate.}
+\title{Filter one or more geometries by a reference geometry using a single
+geometric predicate.}
 \usage{
 geometry_filter(.target_geoms, .reference_geom, .predicate, ...)
 }
 \arguments{
 \item{.target_geoms}{A table of one or more to-be-filtered simple features.}
 
-\item{.reference_geom}{A single simple feature that the targets will be compared to.}
+\item{.reference_geom}{A single simple feature that the targets will be
+compared to.}
 
-\item{.predicate}{A <\link[sf:geos_binary_pred]{binary geometric predicate}>}
+\item{.predicate}{A <\code{\link[sf:geos_binary_pred]{sf::geos_binary_pred()}}>}
 
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> arguments for \link[tidyselect:language]{selecting} columns from \code{.target_geoms}}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> arguments for
+\link[tidyselect:language]{selecting} columns from \code{.target_geoms}}
 }
 \value{
-a subset of \code{.target_geoms} that meets the criteria represented by \code{.reference_geom} and \code{.predicate}
+a subset of \code{.target_geoms} that meets the criteria represented by
+\code{.reference_geom} and \code{.predicate}
 }
 \description{
-Filter one or more geometries by a reference geometry using a single geometric predicate.
+Filter one or more geometries by a reference geometry using a single
+geometric predicate.
+}
+\examples{
+library(sf)
+targets <- st_sf(label = letters[1:3],
+                 geometry = c(unit_pentagon + c(1, 1),
+                              unit_pentagon + c(2, 2),
+                              unit_pentagon + c(3, 3)),
+                 sf_column_name = "geometry")
+geometry_filter(targets, unit_pentagon, st_intersects, "label")
 }

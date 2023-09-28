@@ -27,6 +27,7 @@ utm_crs <- function(utm_zone, datum = "NAD83"){
 #' @param .longitudes one or more decimal longitudes
 #'
 #' @return a single integer code for one UTM Zone
+#' @seealso [utm_zone_from_longitude()]
 #' @export
 central_utm <- function(.longitudes){
     as.integer(round(median(utm_zone_from_longitude(.longitudes))))
@@ -39,6 +40,8 @@ central_utm <- function(.longitudes){
 #' @param datum optional, the datum that the shapefile uses, defaults to "NAD83
 #'
 #' @return a <[sf::sf]> object
+#' @seealso [central_utm()]
+#' @seealso [utm_crs()]
 #' @export
 transform_tiger_to_utm <- function(.tiger_features,
                                    longitude_label = "INTPTLON",

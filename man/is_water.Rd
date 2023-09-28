@@ -9,9 +9,11 @@ is_water(.features, .water_area_label = "AWATER", .land_area_label = "ALAND")
 \arguments{
 \item{.features}{a simple features table}
 
-\item{.water_area_label}{optional, the column that describes water area, defaults to "AWATER"}
+\item{.water_area_label}{optional, the column that describes water area,
+defaults to "AWATER"}
 
-\item{.land_area_label}{optional, the column that describes land area, defaults to "ALAND"}
+\item{.land_area_label}{optional, the column that describes land area,
+defaults to "ALAND"}
 }
 \value{
 a logical vector that is \code{TRUE} for water areas

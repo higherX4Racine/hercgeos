@@ -4,6 +4,9 @@
 #'
 #' @return a simple features table with one entry per geography
 #' @export
+#' @examples
+#' library(sf)
+#'
 read_tigershapes <- function(.path) {
     .path |>
         sf::read_sf(
@@ -28,6 +31,7 @@ read_tigershapes <- function(.path) {
 #' @param ... other arguments for <[filtering][dplyr::filter]> the shapefiles
 #'
 #' @return a tibble that is also a simple features object.
+#' @seealso [read_tigershapes()]
 #' @export
 batch_read_tigershapes <- function(.path_list, .names_to, ...) {
     if (is.null(names(.path_list ))) {

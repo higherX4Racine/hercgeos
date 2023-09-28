@@ -15,3 +15,6 @@ a single integer code for one UTM Zone
 \description{
 Find the median UTM Zone from a vector of longitudes.
 }
+\seealso{
+\code{\link[=utm_zone_from_longitude]{utm_zone_from_longitude()}}
+}

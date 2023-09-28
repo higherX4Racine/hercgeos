@@ -17,3 +17,9 @@ Older shapefiles from the census (pre-2010) have the last two digits of the
 year appended to the ends of their fields. This function removes all trailing
 digits from each field name.
 }
+\examples{
+data.frame(
+  LoveIs0 = c("Amor", "Amour", "Amore")
+) |> fix_old_year_suffixes()
+
+}

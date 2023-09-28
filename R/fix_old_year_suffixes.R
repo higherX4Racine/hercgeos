@@ -8,6 +8,11 @@
 #'
 #' @return the same tibble, but with some fields possibly renamed.
 #' @export
+#' @examples
+#' data.frame(
+#'   LoveIs0 = c("Amor", "Amour", "Amore")
+#' ) |> fix_old_year_suffixes()
+#'
 fix_old_year_suffixes <- function(.features){
     dplyr::rename_with(.features,
                        stringr::str_remove,

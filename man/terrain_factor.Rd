@@ -2,16 +2,23 @@
 % Please edit documentation in R/terrain.R
 \name{terrain_factor}
 \alias{terrain_factor}
-\title{Create a factor of terrains based on census reporting of water area and land use.}
+\title{Create a factor of terrains based on census reporting of water area and land
+use.}
 \usage{
 terrain_factor(.blocks, ...)
 }
 \arguments{
 \item{.blocks}{a simple features table from TIGER/Line}
+
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> additional arguments to pass to \code{\link[=is_water]{is_water()}}}
 }
 \value{
 a factor with three levels, the names of \link{TERRAIN_COLORS}
 }
 \description{
-Create a factor of terrains based on census reporting of water area and land use.
+Create a factor of terrains based on census reporting of water area and land
+use.
+}
+\seealso{
+\code{\link[=is_water]{is_water()}}
 }
