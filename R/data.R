@@ -23,21 +23,18 @@
 #' @source <https://api.census.gov/data/2020/dec/pl/groups.html>
 "DECENNIAL_POPULATION_VARIABLE_FORMATS"
 
-#' Twelve 2020 Census tracts from the northern part of Nashua, NH.
+#' Two 2020 Census tracts from the northern part of Nashua, NH.
 #'
-#' This set of simple features are all of the 2020 Census tracts whose GEOIDs
-#' begin with "33011010". That means that they are in Hillsborough County, NH.
-#' It was created by filtering, but otherwise not changing, a file with every
-#' 2020 Census tract in New Hampshire.
+#' The northern part of the city of Nashua, NH briefly seceded and becoming its
+#' own town, Nashville. These tracts are roughly in that area. This set of
+#' simple features was created by filtering, but otherwise not changing, a file
+#' with every 2020 Census tract in New Hampshire.
 #'
-#' The northern part of the city of Nashua, NH once considered seceding and
-#' becoming its own city, Nashville. These tracts are roughly in that area.
+#' @format `NASHVILLE_NH` A list of three tibbles of simple features
 #'
-#' @format ## `NASHVILLE_NH` A list of three tibbles of simple features
+#'   **blocks** : All census blocks within the `tracts`.
 #'
-#'   **blocks** : All census blocks with GEOIDs that start with "33011010"
-#'
-#'   **tracts** : All census tracts with GEOIDs that start with "33011010"
+#'   **tracts** : Tracts "33011010400" and "33011010500" from the 2020 US Census.
 #'
 #'   **historic_district** : The registered national historic place that once was
 #'   Nashville, NH.

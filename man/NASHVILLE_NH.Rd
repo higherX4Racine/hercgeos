@@ -3,13 +3,13 @@
 \docType{data}
 \name{NASHVILLE_NH}
 \alias{NASHVILLE_NH}
-\title{Twelve 2020 Census tracts from the northern part of Nashua, NH.}
+\title{Two 2020 Census tracts from the northern part of Nashua, NH.}
 \format{
-\subsection{\code{NASHVILLE_NH} A list of three tibbles of simple features}{
+\code{NASHVILLE_NH} A list of three tibbles of simple features
 
-\strong{blocks} : All census blocks with GEOIDs that start with "33011010"
+\strong{blocks} : All census blocks within the \code{tracts}.
 
-\strong{tracts} : All census tracts with GEOIDs that start with "33011010"
+\strong{tracts} : Tracts "33011010400" and "33011010500" from the 2020 US Census.
 
 \strong{historic_district} : The registered national historic place that once was
 Nashville, NH.
@@ -17,7 +17,6 @@ Nashville, NH.
 For \code{blocks} and \code{tracts}, the columns are verbatim what you find in
 freshly-downloaded TIGER/Line shapefiles. For \code{historic_district}, the
 columns are "RESNAME", "SRC_DAT", and "NR_PROP"
-}
 }
 \source{
 The National Register of Historic Places' database of shapefiles:
@@ -30,13 +29,9 @@ The US Censu Bureau's TIGER/Line shapefile database:
 NASHVILLE_NH
 }
 \description{
-This set of simple features are all of the 2020 Census tracts whose GEOIDs
-begin with "33011010". That means that they are in Hillsborough County, NH.
-It was created by filtering, but otherwise not changing, a file with every
-2020 Census tract in New Hampshire.
-}
-\details{
-The northern part of the city of Nashua, NH once considered seceding and
-becoming its own city, Nashville. These tracts are roughly in that area.
+The northern part of the city of Nashua, NH briefly seceded and becoming its
+own town, Nashville. These tracts are roughly in that area. This set of
+simple features was created by filtering, but otherwise not changing, a file
+with every 2020 Census tract in New Hampshire.
 }
 \keyword{datasets}
