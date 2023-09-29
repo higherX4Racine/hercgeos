@@ -1,34 +1,29 @@
-#' Identify census blocks that are all water
+#' Identify geographies that are all water
 #'
-#' @param .features a simple features table
-#' @param .water_area_label optional, the column that describes water area,
-#'   defaults to "AWATER"
-#' @param .land_area_label optional, the column that describes land area,
-#'   defaults to "ALAND"
+#' @param .water_area <numeric> the area of a geography that is water
+#' @param .land_area <numeric> the area of a geography that is land
 #'
 #' @return a logical vector that is `TRUE` for water areas
 #' @export
-is_water <- function(.features,
-                     .water_area_label = "AWATER",
-                     .land_area_label = "ALAND") {
-    .features[[.water_area_label]] > 0 &
-        .features[[.land_area_label]] == 0
+is_water <- function(.water_area, .land_area){
+    .water_area > 0 & .land_area == 0
 }
 
 #' Create a factor of terrains based on census reporting of water area and land
 #' use.
 #'
-#' @param .blocks a simple features table from TIGER/Line
-#' @param ...  <[`dynamic-dots`][rlang::dyn-dots]> additional arguments to pass to [is_water()]
+#' @param .use_type character The census labels blocks as "U" for developed and
+#'   "R" for undeveloped
+#' @inheritDotParams is_water .water_area .land_area
 #'
 #' @return a factor with three levels, the names of [TERRAIN_COLORS]
 #' @seealso [is_water()]
 #' @export
-terrain_factor <- function(.blocks, ...){
+terrain_factor <- function(.use_type, ...){
     factor(
         dplyr::case_when(
-            is_water(.blocks, ...) ~ names(hercgeos::TERRAIN_COLORS)[1],
-            .blocks$UR == "R" ~ names(hercgeos::TERRAIN_COLORS)[2],
+            is_water(...) ~ names(hercgeos::TERRAIN_COLORS)[1],
+            .use_type == "R" ~ names(hercgeos::TERRAIN_COLORS)[2],
             .default = names(hercgeos::TERRAIN_COLORS)[3]
         ),
         levels = names(hercgeos::TERRAIN_COLORS)

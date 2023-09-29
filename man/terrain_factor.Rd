@@ -5,12 +5,18 @@
 \title{Create a factor of terrains based on census reporting of water area and land
 use.}
 \usage{
-terrain_factor(.blocks, ...)
+terrain_factor(.use_type, ...)
 }
 \arguments{
-\item{.blocks}{a simple features table from TIGER/Line}
+\item{.use_type}{character The census labels blocks as "U" for developed and
+"R" for undeveloped}
 
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> additional arguments to pass to \code{\link[=is_water]{is_water()}}}
+\item{...}{
+  Arguments passed on to \code{\link[=is_water]{is_water}}
+  \describe{
+    \item{\code{.water_area}}{\if{html}{\out{<numeric>}} the area of a geography that is water}
+    \item{\code{.land_area}}{\if{html}{\out{<numeric>}} the area of a geography that is land}
+  }}
 }
 \value{
 a factor with three levels, the names of \link{TERRAIN_COLORS}

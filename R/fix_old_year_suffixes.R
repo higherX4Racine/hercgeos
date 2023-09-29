@@ -15,6 +15,6 @@
 #'
 fix_old_year_suffixes <- function(.features){
     dplyr::rename_with(.features,
-                       stringr::str_remove,
-                       pattern = "\\d+$")
+                       ~ stringr::str_remove(.,
+                                             pattern = "\\d+$"))
 }

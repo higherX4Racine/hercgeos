@@ -12,13 +12,11 @@ read_tigershapes <- function(.path) {
         sf::read_sf(
             quiet = TRUE
         ) |>
+        fix_old_year_suffixes() |>
         dplyr::rename_with(
             ~ stringr::str_remove(., pattern = "\\d+$")
         ) |>
-        dplyr::mutate(
-            dplyr::across(tidyselect::starts_with("INTPT"),
-                          readr::parse_number)
-        ) |>
+        fix_latlong_to_numeric() |>
         sf::st_set_agr(
             hercgeos::TIGER_ATTRIBUTES
         )

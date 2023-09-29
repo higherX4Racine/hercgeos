@@ -22,7 +22,9 @@ reference:
   desc: >
     Categorize or display terrain, e.g. urban vs. rural, land vs. water
   contents:
-  - has_concept("terrain")
+  - geom_terrain
+  - is_water
+  - terrain_factor
 - title: TIGER/Line functions
   desc: >
     Read shapefiles that have been downloaded from the US Census Bureau's
@@ -30,7 +32,9 @@ reference:
   contents:
   - starts_with("fix")
   - geoid_to_tract_id
-  - has_concept("tiger")
+  - batch_read_tigershapes
+  - read_tigershapes
+  - transform_tiger_to_utm
 - title: Decennial census functions
   desc: >
     A major use-case for this package is to map American Community Survey data
@@ -45,4 +49,6 @@ reference:
     functions from the [simple features](`sf`) package.
   contents:
   - geometry_filter
-  - has_concept("utm")
+  - central_utm
+  - utm_crs
+  - utm_zone_from_longitude

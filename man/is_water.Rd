@@ -2,22 +2,18 @@
 % Please edit documentation in R/terrain.R
 \name{is_water}
 \alias{is_water}
-\title{Identify census blocks that are all water}
+\title{Identify geographies that are all water}
 \usage{
-is_water(.features, .water_area_label = "AWATER", .land_area_label = "ALAND")
+is_water(.water_area, .land_area)
 }
 \arguments{
-\item{.features}{a simple features table}
+\item{.water_area}{\if{html}{\out{<numeric>}} the area of a geography that is water}
 
-\item{.water_area_label}{optional, the column that describes water area,
-defaults to "AWATER"}
-
-\item{.land_area_label}{optional, the column that describes land area,
-defaults to "ALAND"}
+\item{.land_area}{\if{html}{\out{<numeric>}} the area of a geography that is land}
 }
 \value{
 a logical vector that is \code{TRUE} for water areas
 }
 \description{
-Identify census blocks that are all water
+Identify geographies that are all water
 }

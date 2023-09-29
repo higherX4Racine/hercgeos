@@ -6,7 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of hercgeos is to …
+The goal of hercgeos is to make it a little easier and more efficient to
+work with spatial data from the US Census and related sources.
 
 ## Installation
 
@@ -20,33 +21,67 @@ devtools::install_github("higherX4Racine/hercgeos")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The fresh-from-the-servers
+[TIGER/Line®](https://www.census.gov/cgi-bin/geo/shapefiles/index.php)
+shapefiles have *EXECRABLE* column names. hercgeos helps with this.
 
 ``` r
 library(hercgeos)
-## basic example code
+NASHVILLE_NH |>
+    purrr::discard_at("historic_district") |>
+    purrr::map(names) |>
+    tibble::enframe(name = "Layer", value = "Names") |>
+    knitr::kable(caption = "Original column names")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+| Layer  | Names                                                                                                                                                                                         |
+|:-------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| blocks | STATEFP20 , COUNTYFP20, TRACTCE20 , BLOCKCE20 , GEOID20 , NAME20 , MTFCC20 , UR20 , UACE20 , UATYPE20 , FUNCSTAT20, ALAND20 , AWATER20 , INTPTLAT20, INTPTLON20, HOUSING20 , POP20 , geometry |
+| tracts | STATEFP , COUNTYFP, TRACTCE , GEOID , NAME , NAMELSAD, MTFCC , FUNCSTAT, ALAND , AWATER , INTPTLAT, INTPTLON, geometry                                                                        |
+
+Original column names
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+
+NASHVILLE_NH |>
+    purrr::discard_at("historic_district") |>
+    purrr::map(fix_old_year_suffixes) |>
+    purrr::map(names) |>
+    tibble::enframe(name = "Layer", value = "Names") |>
+    knitr::kable(caption = "Repaired column names")
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+| Layer  | Names                                                                                                                                                       |
+|:-------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| blocks | STATEFP , COUNTYFP, TRACTCE , BLOCKCE , GEOID , NAME , MTFCC , UR , UACE , UATYPE , FUNCSTAT, ALAND , AWATER , INTPTLAT, INTPTLON, HOUSING , POP , geometry |
+| tracts | STATEFP , COUNTYFP, TRACTCE , GEOID , NAME , NAMELSAD, MTFCC , FUNCSTAT, ALAND , AWATER , INTPTLAT, INTPTLON, geometry                                      |
 
-You can also embed plots, for example:
+Repaired column names
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+There are also some nice presets for mapping
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+``` r
+ggplot2::ggplot() +
+    geom_terrain(
+        NASHVILLE_NH$blocks |>
+            fix_old_year_suffixes() |>
+            fix_latlong_to_numeric() |>
+            transform_tiger_to_utm() |>
+            dplyr::mutate(
+                Terrain = terrain_factor(.data$UR,
+                                         .data$AWATER,
+                                         .data$ALAND)
+            )
+    ) +
+    ggplot2::geom_sf(
+        data = NASHVILLE_NH$tracts |>
+            fix_latlong_to_numeric() |>
+            transform_tiger_to_utm(),
+        fill = NA,
+        color = "#ff2222",
+        linewidth = ggplot2::rel(2)
+    ) +
+    ggplot2::theme_minimal()
+```
+
+<img src="man/figures/README-map-1.png" width="100%" />
