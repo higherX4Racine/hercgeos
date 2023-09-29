@@ -54,17 +54,25 @@ use.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">terrain_factor</span><span class="op">(</span><span class="va">.blocks</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">terrain_factor</span><span class="op">(</span><span class="va">.use_type</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>.blocks</dt>
-<dd><p>a simple features table from TIGER/Line</p></dd>
+    <dl><dt>.use_type</dt>
+<dd><p>character The census labels blocks as "U" for developed and
+"R" for undeveloped</p></dd>
 
 
 <dt>...</dt>
-<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/dyn-dots.html" class="external-link">dynamic-dots</a></code>&gt; additional arguments to pass to <code><a href="is_water.html">is_water()</a></code></p></dd>
+<dd><p>Arguments passed on to <code><a href="is_water.html">is_water</a></code></p><dl><dt><code>.water_area</code></dt>
+<dd><p><numeric> the area of a geography that is water</numeric></p></dd>
+
+    <dt><code>.land_area</code></dt>
+<dd><p><numeric> the area of a geography that is land</numeric></p></dd>
+
+  
+</dl></dd>
 
 </dl></div>
     <div class="section level2">

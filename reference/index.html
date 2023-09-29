@@ -41,9 +41,30 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="example-data-sets">Example data sets<a class="anchor" aria-label="anchor" href="#example-data-sets"></a></h2>
+      
+      <p class="section-desc"></p><p>Small collections of, for example, shapefiles that are useful for testing or demonstrating the features of the package.</p>
+
+      
+    </div><div id="" class="section level2">
       
       
+      
+
+      <dl><dt>
+          
+          <code><a href="NASHVILLE_NH.html">NASHVILLE_NH</a></code> 
+        </dt>
+        <dd>Twelve 2020 Census tracts from the northern part of Nashua, NH.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="unit_pentagon.html">UNIT_PENTAGON</a></code> 
+        </dt>
+        <dd>An <code>sfc</code> object with one five-sided polygon whose are is one.</dd>
+      </dl></div><div class="section level2">
+      <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a></h2>
+      
+      <p class="section-desc"></p><p>Descriptions of the layout of data from TIGER/Line or other sources, as well as various defaults, like colors for maps of terrain.</p>
 
       
     </div><div id="" class="section level2">
@@ -58,11 +79,6 @@
         <dd>Formats for decennial census variables of overall population.</dd>
       </dl><dl><dt>
           
-          <code><a href="NASHVILLE_NH.html">NASHVILLE_NH</a></code> 
-        </dt>
-        <dd>Twelve 2020 Census tracts from the northern part of Nashua, NH.</dd>
-      </dl><dl><dt>
-          
           <code><a href="TERRAIN_COLORS.html">TERRAIN_COLORS</a></code> 
         </dt>
         <dd>A named character vector of hex-encoded colors for water, developed and undeveloped land.</dd>
@@ -71,22 +87,45 @@
           <code><a href="TIGER_ATTRIBUTES.html">TIGER_ATTRIBUTES</a></code> 
         </dt>
         <dd>A named character vector of shapefile attributes for data from TIGER/Line</dd>
+      </dl></div><div class="section level2">
+      <h2 id="terrain">Terrain<a class="anchor" aria-label="anchor" href="#terrain"></a></h2>
+      
+      <p class="section-desc"></p><p>Categorize or display terrain, e.g. urban vs. rural, land vs. water</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="geom_terrain.html">geom_terrain()</a></code> 
+        </dt>
+        <dd>Plot census blocks by water or land use</dd>
       </dl><dl><dt>
           
-          <code><a href="batch_read_tigershapes.html">batch_read_tigershapes()</a></code> 
+          <code><a href="is_water.html">is_water()</a></code> 
         </dt>
-        <dd>Load geographies from many shapefiles into a tibble of simple features</dd>
+        <dd>Identify geographies that are all water</dd>
       </dl><dl><dt>
           
-          <code><a href="central_utm.html">central_utm()</a></code> 
+          <code><a href="terrain_factor.html">terrain_factor()</a></code> 
         </dt>
-        <dd>Find the median UTM Zone from a vector of longitudes.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="decennial_pl_variable.html">decennial_pl_variable()</a></code> 
-        </dt>
-        <dd>Variable names for PL tables, per the idiosyncrasies of decennial censuses</dd>
-      </dl><dl><dt>
+        <dd>Create a factor of terrains based on census reporting of water area and land
+use.</dd>
+      </dl></div><div class="section level2">
+      <h2 id="tiger-line-functions">TIGER/Line functions<a class="anchor" aria-label="anchor" href="#tiger-line-functions"></a></h2>
+      
+      <p class="section-desc"></p><p>Read shapefiles that have been downloaded from the US Census Bureau’s TIGER/Line shapefile database.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="fix_latlong_to_numeric.html">fix_latlong_to_numeric()</a></code> 
         </dt>
@@ -110,23 +149,12 @@
           
           <code><a href="geoid_to_tract_id.html">geoid_to_tract_id()</a></code> 
         </dt>
-        <dd>Extract the 4- or 6-digit tract codes from full census GEOID</dd>
+        <dd>Extract the 4- or 6-digit tract codes from full census GEOID values</dd>
       </dl><dl><dt>
           
-          <code><a href="geom_terrain.html">geom_terrain()</a></code> 
+          <code><a href="batch_read_tigershapes.html">batch_read_tigershapes()</a></code> 
         </dt>
-        <dd>Plot census blocks by water or land use</dd>
-      </dl><dl><dt>
-          
-          <code><a href="geometry_filter.html">geometry_filter()</a></code> 
-        </dt>
-        <dd>Filter one or more geometries by a reference geometry using a single
-geometric predicate.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="is_water.html">is_water()</a></code> 
-        </dt>
-        <dd>Identify census blocks that are all water</dd>
+        <dd>Load geographies from many shapefiles into a tibble of simple features</dd>
       </dl><dl><dt>
           
           <code><a href="read_tigershapes.html">read_tigershapes()</a></code> 
@@ -134,25 +162,52 @@ geometric predicate.</dd>
         <dd>Import data from US Census TIGER/Line shapefiles</dd>
       </dl><dl><dt>
           
-          <code><a href="terrain_factor.html">terrain_factor()</a></code> 
-        </dt>
-        <dd>Create a factor of terrains based on census reporting of water area and land
-use.</dd>
-      </dl><dl><dt>
-          
           <code><a href="transform_tiger_to_utm.html">transform_tiger_to_utm()</a></code> 
         </dt>
         <dd>Transform native TIGER/Line lat-long features to UTM features</dd>
+      </dl></div><div class="section level2">
+      <h2 id="decennial-census-functions">Decennial census functions<a class="anchor" aria-label="anchor" href="#decennial-census-functions"></a></h2>
+      
+      <p class="section-desc"></p><p>A major use-case for this package is to map American Community Survey data from tracts to more concrete, real-world geographical places. One way to do this is to use block populations from each decennial census.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="decennial_pl_variable.html">decennial_pl_variable()</a></code> 
+        </dt>
+        <dd>Variable names for PL tables, per the idiosyncrasies of decennial censuses</dd>
       </dl><dl><dt>
           
           <code><a href="truncate_decennial_tract_codes.html">truncate_decennial_tract_codes()</a></code> 
         </dt>
         <dd>Lop off trailing "00"s from census tract codes from 2000.</dd>
+      </dl></div><div class="section level2">
+      <h2 id="geometric-operations">Geometric operations<a class="anchor" aria-label="anchor" href="#geometric-operations"></a></h2>
+      
+      <p class="section-desc"></p><p>Specialized functions that generally build upon more modularly-designed functions from the <a href="%60sf%60">simple features</a> package.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="geometry_filter.html">geometry_filter()</a></code> 
+        </dt>
+        <dd>Filter one or more geometries by a reference geometry using a single
+geometric predicate.</dd>
       </dl><dl><dt>
           
-          <code><a href="unit_pentagon.html">unit_pentagon</a></code> 
+          <code><a href="central_utm.html">central_utm()</a></code> 
         </dt>
-        <dd>An <code>sfc</code> object with one five-sided polygon whose are is one.</dd>
+        <dd>Find the median UTM Zone from a vector of longitudes.</dd>
       </dl><dl><dt>
           
           <code><a href="utm_crs.html">utm_crs()</a></code> 
@@ -164,7 +219,8 @@ use.</dd>
         </dt>
         <dd>Identify the UTM Zone that corresponds to a longitude</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
