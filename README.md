@@ -23,7 +23,8 @@ devtools::install_github("higherX4Racine/hercgeos")
 
 The fresh-from-the-servers
 [TIGER/Line®](https://www.census.gov/cgi-bin/geo/shapefiles/index.php)
-shapefiles have *EXECRABLE* column names. hercgeos helps with this.
+shapefiles have *decennial-census-specific* column names. hercgeos helps
+with this.
 
 ``` r
 library(hercgeos)
