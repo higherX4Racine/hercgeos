@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# hercgeos
+# hercgeos <img src="man/figures/HE-star-trial.png" align="right" />
 
 <!-- badges: start -->
 <!-- badges: end -->

@@ -1,6 +1,13 @@
 url: https://higherx4racine.github.io/hercgeos/
+
 template:
   bootstrap: 5
+
+authors:
+  sidebar:
+    roles: [aut, cph]
+  footer:
+    roles: [cph]
 
 reference:
 - title: Example data sets
