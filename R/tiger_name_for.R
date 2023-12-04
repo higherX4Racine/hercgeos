@@ -9,7 +9,6 @@
 #'
 #' @examples
 #' tiger_name_for(55L, 2000L, "county subunits")
-
 tiger_name_for <- function(state,
                            year,
                            geography = c("county subunits",
