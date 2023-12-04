@@ -3,6 +3,9 @@ url: https://higherx4racine.github.io/hercgeos/
 template:
   bootstrap: 5
 
+development:
+  mode: auto
+
 authors:
   sidebar:
     roles: [aut, cph]
@@ -42,6 +45,7 @@ reference:
   - batch_read_tigershapes
   - read_tigershapes
   - transform_tiger_to_utm
+  - tiger_name_for
 - title: Decennial census functions
   desc: >
     A major use-case for this package is to map American Community Survey data
