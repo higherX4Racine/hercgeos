@@ -20,6 +20,7 @@ reference:
   contents:
   - NASHVILLE_NH
   - UNIT_PENTAGON
+
 - title: Metadata
   desc: >
     Descriptions of the layout of data from TIGER/Line or other sources, as
@@ -28,6 +29,7 @@ reference:
   - DECENNIAL_POPULATION_VARIABLE_FORMATS
   - TERRAIN_COLORS
   - TIGER_ATTRIBUTES
+
 - title: Terrain
   desc: >
     Categorize or display terrain, e.g. urban vs. rural, land vs. water
@@ -35,6 +37,7 @@ reference:
   - geom_terrain
   - is_water
   - terrain_factor
+
 - title: TIGER/Line functions
   desc: >
     Read shapefiles that have been downloaded from the US Census Bureau's
@@ -46,6 +49,7 @@ reference:
   - read_tigershapes
   - transform_tiger_to_utm
   - tiger_name_for
+
 - title: Decennial census functions
   desc: >
     A major use-case for this package is to map American Community Survey data
@@ -54,6 +58,7 @@ reference:
   contents:
   - decennial_pl_variable
   - truncate_decennial_tract_codes
+
 - title: Geometric operations
   desc: >
     Specialized functions that generally build upon more modularly-designed

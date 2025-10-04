@@ -1,0 +1,281 @@
+---
+title: "Geographies in Racine County"
+---
+
+## Setup
+
+One annoying aspect of using `knitr` and the simple features library `sf` is
+that you need to import `sf` in order to make cacheing work.
+
+```{r}
+#| label: setup
+#| cache: FALSE
+#| output: asis
+
+knitr::opts_chunk$set(
+    cache = TRUE,
+    echo = TRUE
+)
+
+library(sf) # otherwise loading sf objects from the cache doesn't work.
+```
+
+## Geographies
+
+These examples work with shapefiles that divide up the State of Wisconsin into
+a set of comparable geographic units.
+Each shapefile describes the geometries at one specific level of the Census's
+[geographic hierarchy](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html).
+Data from the American Community Survey are reported more frequently at larger
+spatial scales.
+For example, there are some reports about the whole nation that come out weekly,
+while only the decennial census reports data at the smallest scale, the block.
+This set of examples uses four different levels:
+
+**block**
+: Blocks are the smallest unit of geography, often a literal city block.
+
+**block group**
+: Block groups are contiguous and might be a few blocks bounded by busy streets.
+
+**tract**
+: A census tract is bigger than a neighborhood but smaller than a city.
+: They used to be defined as an area that a worker could survey in a fixed time.
+
+**county subdivision**
+: Usually an area that is recognized, but not defined, by the Census.
+: In Racine County, these are the boundaries of cities, towns, and villages.
+
+```{r}
+#| label: create_file_table
+
+SOURCE_FILES <- tibble::tribble(
+    ~ Year, ~ Geography,          ~ File,
+    2000L,  "County Subdivision", "tl_2010_55_cousub00",
+    2010L,  "County Subdivision", "tl_2010_55_cousub10",
+    2020L,  "County Subdivision", "tl_2020_55_cousub",
+    2000L,  "Tract",              "tl_2010_55_tract00",
+    2010L,  "Tract",              "tl_2010_55_tract10",
+    2020L,  "Tract",              "tl_2020_55_tract",
+    2000L,  "Block Group",        "tl_2010_55_bg00",
+    2010L,  "Block Group",        "tl_2010_55_bg10",
+    2020L,  "Block Group",        "tl_2020_55_bg",
+    2000L,  "Block",              "tl_2010_55_tabblock00",
+    2010L,  "Block",              "tl_2010_55_tabblock10",
+    2020L,  "Block",              "tl_2020_55_tabblock20"
+) |>
+    dplyr::mutate(
+        Geography = forcats::fct_inorder(.data$Geography)
+    )
+```
+
+## Import Data
+
+`hercgeos` provides a utility function for importing many shapefiles at once:
+`hercgeos::batch_read_tigershapes()`.
+We can pass it the `File` column of the `SOURCE FILES` table, but it needs a
+little help.
+That being said, there are some really different computations to do for block-
+level data, so we will run two sets of imports.
+One will import blocks, the other will import everything else.
+
+### Expand file paths
+
+First, we have to tell it where the files are.
+Everything is in a root directory, but specific files are sorted by year.
+
+```{r}
+#| label: expand-file-paths
+#| dependson:
+#| - "create-file-table"
+
+.SHAPEFILE_FOLDER <- hiRx::input_path("Downloads",
+                                      "Census Bureau",
+                                      "Shapefiles")
+
+SHAPEFILE_PATHS <- c(
+    "Blocks" = TRUE,
+    "Bigger Geos" = FALSE
+) |>
+    purrr::map(
+        \(.should_include) {
+            .tmp <- SOURCE_FILES |>
+                dplyr::filter(
+                    stringr::str_detect(.data$Geography,
+                                        "Block$",
+                                        negate = !.should_include)
+                )
+            .tmp |>
+                purrr::pmap_chr(
+                    \(Year, Geography, File) file.path(.SHAPEFILE_FOLDER,
+                                                       Year,
+                                                       File)
+                ) |>
+                rlang::set_names(
+                    .tmp$File
+                )
+        }
+    )
+
+```
+
+### Batch import
+
+Next, we want to filter each statewide file to only include geometries that
+are in Racine County and are not totally water.
+We can do that by including [data-masking](`?rlang::args_data_masking`) filter
+specifications as extra arguments to `hercgeos::batch_read_tigershapes()`.
+            
+```{r}
+#| label: batch-import-shapefiles
+#| dependson:
+#| - "expand-file-paths"
+
+RAW_SHAPEFILES <- SHAPEFILE_PATHS |>
+    purrr::map(
+        \(.paths) hercgeos::batch_read_tigershapes(.paths,
+                                                   .names_to = "File",
+                                                   .data$COUNTYFP == 101L,
+                                                   .data$ALAND > 0
+        )
+    )
+```
+
+### Wrangle raw shapefiles
+
+Finally, we need to do a little post-import cleanup.
+Several of the steps are relevant for both blocks and the other geographies.
+We will combine them into a helper function.
+
+```{r}
+#| label: define-wrangling-helper
+
+.UTM_ZONE_IN_EPSG <- 26916L
+
+.wrangling_helper <- function(.raw_shapefile, .source_info) {
+    .raw_shapefile |>
+        dplyr::select( # redundant subunits of GEOID
+            !tidyselect::matches("(CE|FP)$")
+        ) |>
+        dplyr::inner_join(
+            .source_info,
+            by = "File"
+        ) |>
+        dplyr::relocate(
+            tidyselect::all_of(c(names(.source_info), "GEOID"))
+        ) |>
+        dplyr::arrange(
+            .data$GEOID
+        ) |>
+        dplyr::mutate(
+            geometry = sf::st_transform(.data$geometry,
+                                        .UTM_ZONE_IN_EPSG)
+        )
+}
+```
+
+#### Common cleanup steps
+
+The first step is to remove redundant columns.
+These include columns that incorporate portions of the `GEOID`.
+The second step is to join the new table with `SOURCE FILES`.
+The third step is to sort by GEOID.
+The final step is to transform the coordinate system from loathsome lat/long
+into helpful Universal Transverse Mercator (UTM).
+Eastern Wisconsin is in UTM zone 16, according to the
+[USDA](https://efotg.sc.egov.usda.gov/references/public/WI/coordinate_system_comparison.pdf).
+The census shapefiles report lat/long according to the NAD83 standard, so the
+EPSG code for UTM Zone 16 is
+[26916](https://spatialreference.org/ref/epsg/nad83-utm-zone-16n/).
+
+### Wrangle block data
+
+There are two things (for now!) to do specifically with block data.
+First, the UATYPE column is redundant with the "UR" column, and can be safely
+eliminated.
+Second, there are two columns whose `NA` values should be replaced with zeros.
+`HOUSING` reports the number of households in a census block.
+`POP` reports the number of people living in a census block.
+Both of these estimates are from the decennial census.
+
+```{r}
+#| label: wrangle-block-shapefiles
+#| dependson:
+#| - "create-file-table"
+#| - "define-wrangling-helper"
+
+BLOCKS <- RAW_SHAPEFILES$Blocks |>
+    dplyr::select( # redundant with UR
+        !tidyselect::starts_with("UATYP")
+    ) |>
+    dplyr::mutate(
+        dplyr::across(c("HOUSING", "POP"),
+                      \(.) tidyr::replace_na(., 0L))
+    ) |>
+    .wrangling_helper(
+        SOURCE_FILES
+    )
+```
+
+### Wrangle non-block geographies
+
+The cleanup step for nonblocks is to replace empty values of the `NAME` column
+with the values found in a complementary column, `NAMELSAD`.
+
+```{r}
+#| label: wrangle-nonblock-shapefiles
+#| dependson:
+#| - "create-file-table"
+#| - "define-wrangling-helper"
+
+NON_BLOCKS <- RAW_SHAPEFILES$`Bigger Geos` |>
+    dplyr::mutate(
+        NAME = dplyr::coalesce(.data$NAME,
+                               .data$NAMELSAD)
+    ) |>
+    .wrangling_helper(
+        SOURCE_FILES
+    )
+```
+
+### Visualize the geographies' borders
+
+Now that everything is imported and wrangled, we can take our first look at the
+different ways of breaking Racine County into geographic subunits.
+
+```{r}
+#| label: plot-county-geometry-grid
+#| fig.dim: !expr "c(9, 9)"
+#| dpi: 96
+#| fig.alt: >
+#|   A grid of four maps of Racine County.
+#|   Each map shows how the county is divided up at a specific geographic level.
+#|   In the upper left, 'County Subdivision' shows a few large areas with
+#|   irregular borders that correspond to cities, towns, and villages.
+#|   In the upper right, 'Tract' shows a few large areas with simple borders.
+#|   In the bottom left, 'Block Group' show further subdivisions of tracts.
+#|   In the bottom left, 'Block' shows so many subdivisions of block groups that
+#|   individual blocks blur together in densely populated areas.
+#| dependson:
+#| - "wrangle-block-shapefiles"
+#| - "wrangle-nonblock-shapefiles"
+
+list(BLOCKS, NON_BLOCKS) |>
+    purrr::map(
+        \(.geom) dplyr::filter(.geom,
+                               .data$Year == 2020)
+    ) |>
+    purrr::list_rbind() |>
+    sf::st_as_sf() |>
+    ggplot2::ggplot() +
+    ggplot2::geom_sf(
+        color = "darkblue",
+        fill = ggplot2::alpha("lightblue", 0.25)
+    ) +
+    ggplot2::facet_wrap(
+        facets = ggplot2::vars(.data$Geography),
+        nrow = 2,
+        ncol = 2
+    ) +
+    ggplot2::theme_minimal()
+```

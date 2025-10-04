@@ -39,3 +39,4 @@ Imports:
     tibble,
     tidyr,
     tidyselect
+Config/Needs/website: rmarkdown

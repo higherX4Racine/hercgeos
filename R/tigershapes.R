@@ -13,6 +13,7 @@ read_tigershapes <- function(.path) {
             quiet = TRUE
         ) |>
         fix_old_year_suffixes() |>
+        fix_old_geoids() |>
         dplyr::rename_with(
             ~ stringr::str_remove(., pattern = "\\d+$")
         ) |>
