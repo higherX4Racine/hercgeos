@@ -37,15 +37,21 @@ set_year <- function(.vintage, .detail, .is_old) {
     .vintage + ifelse(.is_old, -10L, 0L)
 }
 
-build_fields_for_vintage <- function(.crosswalk, .vintage, .is_old) {
+build_spec_for_vintage <- function(.crosswalk, .vintage, .is_old) {
     .crosswalk |>
-        purrr::pmap_chr(\(Role, Detail, ...) {
-            pattern_functions[[Role]](
-                set_year(.vintage, Detail, .is_old),
-                Detail
-            )
-        }) |>
-        toupper()
+        dplyr::pull(
+            "Datatype"
+        ) |>
+        rlang::set_names(
+            .crosswalk |>
+                purrr::pmap_chr(
+                    \(Role, Detail, ...) pattern_functions[[Role]](
+                        set_year(.vintage, Detail, .is_old),
+                        Detail
+                    )
+                ) |>
+                toupper()
+        )
 }
 
 #' Compute the names of the columns in a tabulation crosswalk table
@@ -57,20 +63,26 @@ build_fields_for_vintage <- function(.crosswalk, .vintage, .is_old) {
 #'
 #' @param .newer_vintage `<int>` The more recent of the two decennial censuses being compared.
 #'
-#' @returns `<chr[]>` the field names for the relevant crosswalk
+#' @returns `<chr[]>` a named vector of data types for reading the relevant crosswalk's csv file
 #' @export
-crosswalk_field_names <- function(.newer_vintage) {
+crosswalk_spec <- function(.newer_vintage) {
 
     .post_2k <- .newer_vintage > 2000L
 
     .xwalk <- dplyr::filter(DECENNIAL_TABULATION_CROSSWALK,
                             .data$`Pre 2000` | .post_2k)
 
-    .before <- build_fields_for_vintage(.xwalk, .newer_vintage, TRUE)
-
-    if (.post_2k) {
-        .before <- head(.before, -2)
-    }
-
-    c(.before, build_fields_for_vintage(.xwalk, .newer_vintage, FALSE))
+    .xwalk |>
+        dplyr::filter(
+            .data$`In Older Vintage`
+        ) |>
+        build_spec_for_vintage(
+            .newer_vintage,
+            TRUE
+        ) |>
+        c(
+            build_spec_for_vintage(.xwalk,
+                                   .newer_vintage,
+                                   FALSE)
+        )
 }

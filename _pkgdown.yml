@@ -59,7 +59,7 @@ reference:
   contents:
   - decennial_pl_variable
   - truncate_decennial_tract_codes
-  - crosswalk_field_names
+  - crosswalk_spec
 
 - title: Geometric operations
   desc: >
