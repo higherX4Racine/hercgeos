@@ -65,7 +65,11 @@ SOURCE_FILES <- tibble::tribble(
     2020L,  "Block",              "tl_2020_55_tabblock20"
 ) |>
     dplyr::mutate(
-        Geography = forcats::fct_inorder(.data$Geography)
+        Geography = factor(.data$Geography,
+                           levels = c("County Subdivision",
+                                      "Tract",
+                                      "Block Group",
+                                      "Block"))
     )
 ```
 
