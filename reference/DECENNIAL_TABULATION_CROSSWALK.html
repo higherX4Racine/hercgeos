@@ -54,7 +54,7 @@ A crosswalk between tabulation blocks is used to define those correspondences.</
 <h3 id="decennial-tabulation-crosswalk"><code>DECENNIAL_TABULATION_CROSSWALK</code><a class="anchor" aria-label="anchor" href="#decennial-tabulation-crosswalk"></a></h3>
 
 
-<p>A data frame with 18 rows and 5 columns.</p><dl><dt>Role</dt>
+<p>A data frame with 10 rows and 6 columns.</p><dl><dt>Role</dt>
 <dd><p><code>&lt;chr&gt;</code> "FIPS" for parts of GEOIDs, "Area" for block size, and "Part" for information about overlaps</p></dd>
 
 <dt>Detail</dt>
@@ -62,6 +62,9 @@ A crosswalk between tabulation blocks is used to define those correspondences.</
 
 <dt>Data Type</dt>
 <dd><p><code>&lt;chr&gt;</code> usually "c," but occasionally "n" for areas and overlaps.</p></dd>
+
+<dt>In Older Vintage</dt>
+<dd><p><code>&lt;lgl&gt;</code> Is this column used to describe the older vintage in the crosswalks?</p></dd>
 
 <dt>Pre 2000</dt>
 <dd><p><code>&lt;lgl&gt;</code> Does this column appear in earlier crosswalks?</p></dd>
@@ -80,7 +83,7 @@ A crosswalk between tabulation blocks is used to define those correspondences.</
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code>crosswalk_field_name()</code></p></div>
+    <div class="dont-index"><p><code><a href="crosswalk_spec.html">crosswalk_spec()</a></code></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
