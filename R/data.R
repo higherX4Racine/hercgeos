@@ -23,6 +23,27 @@
 #' @source <https://api.census.gov/data/2020/dec/pl/groups.html>
 "DECENNIAL_POPULATION_VARIABLE_FORMATS"
 
+#' The layout for a crosswalk of tabulation blocks between decennial censuses
+#'
+#' Blocks from one decennial census do not necessarily correspond to those from
+#' others.
+#' A crosswalk between tabulation blocks is used to define those correspondences.
+#'
+#' @format ## `DECENNIAL_TABULATION_CROSSWALK`
+#' A data frame with 18 rows and 5 columns.
+#' \describe{
+#'   \item{Role}{`<chr>` "FIPS" for parts of GEOIDs, "Area" for block size, and "Part" for information about overlaps}
+#'   \item{Detail}{`<chr>` several values are possible, depending upon the `Role`}
+#'   \item{Data Type}{`<chr>` usually "c," but occasionally "n" for areas and overlaps.}
+#'   \item{Pre 2000}{`<lgl>` Does this column appear in earlier crosswalks?}
+#'   \item{Field Description}{`<chr>` a short but informative definition of the field's role.}
+#' }
+#'
+#' @source <https://www.census.gov/programs-surveys/geography/technical-documentation/records-layout/2020-census-block-record-layout.html>
+#' @source <https://www.census.gov/programs-surveys/geography/technical-documentation/records-layout/2000-relationship-file-record-layout.html>
+#' @seealso [crosswalk_field_name()]
+"DECENNIAL_TABULATION_CROSSWALK"
+
 #' Two 2020 Census tracts from the northern part of Nashua, NH.
 #'
 #' The northern part of the city of Nashua, NH briefly seceded and becoming its

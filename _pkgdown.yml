@@ -27,6 +27,7 @@ reference:
     well as various defaults, like colors for maps of terrain.
   contents:
   - DECENNIAL_POPULATION_VARIABLE_FORMATS
+  - DECENNIAL_TABULATION_CROSSWALK
   - TERRAIN_COLORS
   - TIGER_ATTRIBUTES
 
@@ -58,6 +59,7 @@ reference:
   contents:
   - decennial_pl_variable
   - truncate_decennial_tract_codes
+  - crosswalk_field_names
 
 - title: Geometric operations
   desc: >

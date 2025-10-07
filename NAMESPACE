@@ -2,6 +2,7 @@
 
 export(batch_read_tigershapes)
 export(central_utm)
+export(crosswalk_field_names)
 export(decennial_pl_variable)
 export(fix_latlong_to_numeric)
 export(fix_names_by_coalescing)
