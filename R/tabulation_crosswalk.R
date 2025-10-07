@@ -71,7 +71,7 @@ crosswalk_spec <- function(.newer_vintage) {
 
     .post_2k <- .newer_vintage > 2000L
 
-    .xwalk <- dplyr::filter(DECENNIAL_TABULATION_CROSSWALK,
+    .xwalk <- dplyr::filter(hercgeos::DECENNIAL_TABULATION_CROSSWALK,
                             .data$`Pre 2000` | .post_2k)
 
     .xwalk |>

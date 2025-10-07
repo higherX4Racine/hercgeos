@@ -16,10 +16,10 @@ utm_zone_from_longitude <- function(.longitude){
 #' @return an <[sf::st_crs()]> object
 #' @export
 utm_crs <- function(utm_zone, datum = "NAD83"){
-    sf::st_crs(glue::glue("+proj=utm",
-                          "+zone={utm_zone}",
-                          "+datum={datum}",
-                          .sep = " "))
+    sf::st_crs(paste("+proj=utm",
+                     paste0("+zone=", utm_zone),
+                     paste0("+datum=", datum),
+                     .sep = " "))
 }
 
 #' Find the median UTM Zone from a vector of longitudes.
@@ -30,7 +30,7 @@ utm_crs <- function(utm_zone, datum = "NAD83"){
 #' @seealso [utm_zone_from_longitude()]
 #' @export
 central_utm <- function(.longitudes){
-    as.integer(round(median(utm_zone_from_longitude(.longitudes))))
+    as.integer(round(stats::median(utm_zone_from_longitude(.longitudes))))
 }
 
 #' Transform native TIGER/Line lat-long features to UTM features
