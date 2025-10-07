@@ -60,6 +60,7 @@ reference:
   - decennial_pl_variable
   - truncate_decennial_tract_codes
   - crosswalk_spec
+  - read_crosswalk
 
 - title: Geometric operations
   desc: >
