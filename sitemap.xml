@@ -1,93 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/404.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/index.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/DECENNIAL_POPULATION_VARIABLE_FORMATS.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/NASHVILLE_NH.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/TERRAIN_COLORS.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/TIGER_ATTRIBUTES.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/batch_read_tigershapes.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/central_utm.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/decennial_pl_variable.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/fix_latlong_to_numeric.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/fix_names_by_coalescing.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/fix_old_geoids.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/fix_old_year_suffixes.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/geoid_to_tract_id.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/geom_terrain.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/geometry_filter.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/hercgeos-package.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/is_water.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/read_tigershapes.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/terrain_factor.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/tiger_name_for.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/transform_tiger_to_utm.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/truncate_decennial_tract_codes.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/unit_pentagon.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/utm_crs.html</loc>
-  </url>
-  <url>
-    <loc>https://higherx4racine.github.io/hercgeos/reference/utm_zone_from_longitude.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://higherx4racine.github.io/hercgeos/404.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/LICENSE-text.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/LICENSE.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/authors.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/index.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/DECENNIAL_POPULATION_VARIABLE_FORMATS.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/DECENNIAL_TABULATION_CROSSWALK.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/NASHVILLE_NH.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/TERRAIN_COLORS.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/TIGER_ATTRIBUTES.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/batch_read_tigershapes.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/central_utm.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/crosswalk_spec.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/decennial_pl_variable.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/fix_latlong_to_numeric.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/fix_names_by_coalescing.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/fix_old_geoids.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/fix_old_year_suffixes.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/geoid_to_tract_id.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/geom_terrain.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/geometry_filter.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/hercgeos-package.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/index.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/is_water.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/read_tigershapes.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/terrain_factor.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/tiger_name_for.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/transform_tiger_to_utm.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/truncate_decennial_tract_codes.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/unit_pentagon.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/utm_crs.html</loc></url>
+<url><loc>https://higherx4racine.github.io/hercgeos/reference/utm_zone_from_longitude.html</loc></url>
 </urlset>
+
