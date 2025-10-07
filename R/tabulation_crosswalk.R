@@ -64,6 +64,8 @@ build_spec_for_vintage <- function(.crosswalk, .vintage, .is_old) {
 #' @param .newer_vintage `<int>` The more recent of the two decennial censuses being compared.
 #'
 #' @returns `<chr[]>` a named vector of data types for reading the relevant crosswalk's csv file
+#'
+#' @seealso [`DECENNIAL_TABULATION_CROSSWALK`]
 #' @export
 crosswalk_spec <- function(.newer_vintage) {
 
@@ -85,4 +87,27 @@ crosswalk_spec <- function(.newer_vintage) {
                                    .newer_vintage,
                                    FALSE)
         )
+}
+
+#' Read a file with crosswalk information between the blocks of two consecutive decennial censuses.
+#'
+#' @param .filepath `<chr>` the full path to the crosswalk file, which may be a ZIP archive
+#' @inheritParams crosswalk_spec
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Additional arguments for [readr::read_delim()].
+#'
+#' @returns `<tbl>` a many-to-many relationship table between the two census's blocks.
+#' @seealso [crosswalk_spec()]
+#' @export
+read_crosswalk <- function(.filepath, .newer_vintage, ...) {
+
+    .delim <- ifelse(.newer_vintage < 2020, ",", "|")
+
+    .spec <- crosswalk_spec(.newer_vintage)
+
+    readr::read_delim(.filepath,
+                      delim = .delim,
+                      col_names = names(.spec),
+                      skip = ifelse(.newer_vintage > 2000, 1, 0),
+                      col_types = .spec,
+                      ...)
 }

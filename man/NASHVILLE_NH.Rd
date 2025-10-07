@@ -29,7 +29,7 @@ The US Censu Bureau's TIGER/Line shapefile database:
 NASHVILLE_NH
 }
 \description{
-The northern part of the city of Nashua, NH briefly seceded and becoming its
+The northern part of the city of Nashua, NH briefly seceded and become its
 own town, Nashville. These tracts are roughly in that area. This set of
 simple features was created by filtering, but otherwise not changing, a file
 with every 2020 Census tract in New Hampshire.

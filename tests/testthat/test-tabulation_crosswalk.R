@@ -117,3 +117,26 @@ test_that("building proceeds correctly from a single vintage input", {
     )
 
 })
+
+test_that("the crosswalk-reading function adapts to different formats", {
+    expect_snapshot_value(
+        "data" |>
+            test_path("crosswalk_from_1990_to_2000.txt") |>
+            read_crosswalk(2000L),
+        style = "serialize"
+    )
+
+    expect_snapshot_value(
+        "data" |>
+            test_path("crosswalk_from_2000_to_2010.txt") |>
+            read_crosswalk(2010L),
+        style = "serialize"
+    )
+
+    expect_snapshot_value(
+        "data" |>
+            test_path("crosswalk_from_2010_to_2020.txt") |>
+            read_crosswalk(2020L),
+        style = "serialize"
+    )
+})

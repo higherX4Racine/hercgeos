@@ -42,12 +42,12 @@
 #'
 #' @source <https://www.census.gov/programs-surveys/geography/technical-documentation/records-layout/2020-census-block-record-layout.html>
 #' @source <https://www.census.gov/programs-surveys/geography/technical-documentation/records-layout/2000-relationship-file-record-layout.html>
-#' @seealso [crosswalk_field_name()]
+#' @seealso [crosswalk_spec()]
 "DECENNIAL_TABULATION_CROSSWALK"
 
 #' Two 2020 Census tracts from the northern part of Nashua, NH.
 #'
-#' The northern part of the city of Nashua, NH briefly seceded and becoming its
+#' The northern part of the city of Nashua, NH briefly seceded and become its
 #' own town, Nashville. These tracts are roughly in that area. This set of
 #' simple features was created by filtering, but otherwise not changing, a file
 #' with every 2020 Census tract in New Hampshire.
@@ -71,5 +71,5 @@
 #'   <https://www.census.gov/cgi-bin/geo/shapefiles/index.php>
 "NASHVILLE_NH"
 
-#' An `sfc` object with one five-sided polygon whose are is one.
+#' An `sfc` object that is a five-sided polygon with area 1.
 "UNIT_PENTAGON"

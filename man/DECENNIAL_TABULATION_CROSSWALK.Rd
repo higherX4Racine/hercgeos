@@ -7,11 +7,12 @@
 \format{
 \subsection{\code{DECENNIAL_TABULATION_CROSSWALK}}{
 
-A data frame with 18 rows and 5 columns.
+A data frame with 10 rows and 6 columns.
 \describe{
 \item{Role}{\verb{<chr>} "FIPS" for parts of GEOIDs, "Area" for block size, and "Part" for information about overlaps}
 \item{Detail}{\verb{<chr>} several values are possible, depending upon the \code{Role}}
 \item{Data Type}{\verb{<chr>} usually "c," but occasionally "n" for areas and overlaps.}
+\item{In Older Vintage}{\verb{<lgl>} Is this column used to describe the older vintage in the crosswalks?}
 \item{Pre 2000}{\verb{<lgl>} Does this column appear in earlier crosswalks?}
 \item{Field Description}{\verb{<chr>} a short but informative definition of the field's role.}
 }
@@ -31,6 +32,6 @@ others.
 A crosswalk between tabulation blocks is used to define those correspondences.
 }
 \seealso{
-\code{\link[=crosswalk_field_name]{crosswalk_field_name()}}
+\code{\link[=crosswalk_spec]{crosswalk_spec()}}
 }
 \keyword{datasets}

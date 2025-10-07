@@ -3,7 +3,7 @@
 \docType{data}
 \name{UNIT_PENTAGON}
 \alias{UNIT_PENTAGON}
-\title{An \code{sfc} object with one five-sided polygon whose are is one.}
+\title{An \code{sfc} object that is a five-sided polygon with area 1.}
 \format{
 An object of class \code{sfc_POLYGON} (inherits from \code{sfc}) of length 1.
 }
@@ -11,6 +11,6 @@ An object of class \code{sfc_POLYGON} (inherits from \code{sfc}) of length 1.
 UNIT_PENTAGON
 }
 \description{
-An \code{sfc} object with one five-sided polygon whose are is one.
+An \code{sfc} object that is a five-sided polygon with area 1.
 }
 \keyword{datasets}
