@@ -1,7 +1,14 @@
 url: https://higherx4racine.github.io/hercgeos/
 
+repo:
+  url:
+    home: https://github.com/higherX4Racine/hercgeos
+
 template:
+  light-switch: true
   bootstrap: 5
+
+destination: pkgdown/docs/
 
 development:
   mode: auto
