@@ -68,6 +68,7 @@ reference:
   - truncate_decennial_tract_codes
   - crosswalk_spec
   - read_crosswalk
+  - perform_crosswalk
 
 - title: Geometric operations
   desc: >

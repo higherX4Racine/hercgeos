@@ -111,3 +111,55 @@ read_crosswalk <- function(.filepath, .newer_vintage, ...) {
                       col_types = .spec,
                       ...)
 }
+
+
+#' Join the blocks from consecutive decennial censuses by their crosswalks
+#'
+#' @param .blocks `<tbl>` a data frame with columns "State," "County," "Tract," and "Block."]
+#' @param .crosswalk `<tbl>` a product of [read_crosswalk()], from 10 years earlier to `.vintage`
+#' @param .vintage `<int>` the decennial year that defined `.blocks`
+#'
+#' @returns `<tbl>` a lookup table from later blocks to earlier ones
+#' \describe{
+#'   \item{Vintage}{`<int>` the later decennial census}
+#'   \item{GEOID}{`<chr>` identifiers for blocks in the later decennial census}
+#'   \item{State}{`<chr>` the state for a block in the earlier census.}
+#'   \item{County}{`<chr>` the county for a block in the earlier census.}
+#'   \item{Tract}{`<chr>` the tract for a block in the earlier census.}
+#'   \item{Block}{`<chr>` the id for a block in the earlier census.}
+#'   \item{Overlap}{`<dbl>` the proportion of the older block that intersects with the newer one}
+#' }
+#' @export
+perform_crosswalk <- function(.blocks, .crosswalk, .vintage) {
+
+    .earlier_year <- .vintage - 10L
+
+    .crosswalk |>
+        dplyr::rename_with(
+            \(.colnames) sub(.vintage, "NEW", .colnames)
+        ) |>
+        dplyr::rename_with(
+            \(.colnames) sub(.earlier_year, "OLD", .colnames)
+        ) |>
+        dplyr::inner_join(
+            .blocks,
+            by = c(STATE_NEW = "State",
+                   COUNTY_NEW = "County",
+                   TRACT_NEW = "Tract",
+                   BLK_NEW = "Block")
+        ) |>
+        dplyr::mutate(
+            Overlap =
+                (.data$AREALAND_INT + .data$AREAWATER_INT) /
+                (.data$AREALAND_OLD + .data$AREAWATER_OLD)
+        ) |>
+        dplyr::select(
+            "Vintage",
+            "GEOID",
+            State = "STATE_OLD",
+            County = "COUNTY_OLD",
+            Tract = "TRACT_OLD",
+            Block = "BLK_OLD",
+            "Overlap"
+        )
+}
