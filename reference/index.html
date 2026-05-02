@@ -41,8 +41,7 @@
 
       <div class="section-desc"><p>Small collections of, for example, shapefiles that are useful for testing or demonstrating the features of the package.</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -53,7 +52,8 @@
 
         </dt>
         <dd>Two 2020 Census tracts from the northern part of Nashua, NH.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="unit_pentagon.html">UNIT_PENTAGON</a></code>
 
@@ -64,8 +64,7 @@
 
       <div class="section-desc"><p>Descriptions of the layout of data from TIGER/Line or other sources, as well as various defaults, like colors for maps of terrain.</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -76,19 +75,22 @@
 
         </dt>
         <dd>Formats for decennial census variables of overall population.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="DECENNIAL_TABULATION_CROSSWALK.html">DECENNIAL_TABULATION_CROSSWALK</a></code>
 
         </dt>
         <dd>The layout for a crosswalk of tabulation blocks between decennial censuses</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="TERRAIN_COLORS.html">TERRAIN_COLORS</a></code>
 
         </dt>
         <dd>A named character vector of hex-encoded colors for water, developed and undeveloped land.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="TIGER_ATTRIBUTES.html">TIGER_ATTRIBUTES</a></code>
 
@@ -99,8 +101,7 @@
 
       <div class="section-desc"><p>Categorize or display terrain, e.g. urban vs. rural, land vs. water</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -111,13 +112,15 @@
 
         </dt>
         <dd>Plot census blocks by water or land use</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="is_water.html">is_water()</a></code>
 
         </dt>
         <dd>Identify geographies that are all water</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="terrain_factor.html">terrain_factor()</a></code>
 
@@ -128,8 +131,7 @@
 
       <div class="section-desc"><p>Read shapefiles that have been downloaded from the US Census Bureau’s TIGER/Line shapefile database.</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -140,49 +142,57 @@
 
         </dt>
         <dd>Convert interpreted latitude and longitude from text to numbers</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="fix_names_by_coalescing.html">fix_names_by_coalescing()</a></code>
 
         </dt>
         <dd>Coalesce NAME and NAMELSAD fields to fix blank NAME entries</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="fix_old_geoids.html">fix_old_geoids()</a></code>
 
         </dt>
         <dd>Replace ID fields with "GEOID"</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="fix_old_year_suffixes.html">fix_old_year_suffixes()</a></code>
 
         </dt>
         <dd>Remove year numbers from the end of field names</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="geoid_to_tract_id.html">geoid_to_tract_id()</a></code>
 
         </dt>
         <dd>Extract the 4- or 6-digit tract codes from full census GEOID values</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="batch_read_tigershapes.html">batch_read_tigershapes()</a></code>
 
         </dt>
         <dd>Load geographies from many shapefiles into a tibble of simple features</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="read_tigershapes.html">read_tigershapes()</a></code>
 
         </dt>
         <dd>Import data from US Census TIGER/Line shapefiles</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="transform_tiger_to_utm.html">transform_tiger_to_utm()</a></code>
 
         </dt>
         <dd>Transform native TIGER/Line lat-long features to UTM features</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="tiger_name_for.html">tiger_name_for()</a></code>
 
@@ -193,8 +203,7 @@
 
       <div class="section-desc"><p>A major use-case for this package is to map American Community Survey data from tracts to more concrete, real-world geographical places. One way to do this is to use block populations from each decennial census.</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -205,25 +214,29 @@
 
         </dt>
         <dd>Variable names for PL tables, per the idiosyncrasies of decennial censuses</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="truncate_decennial_tract_codes.html">truncate_decennial_tract_codes()</a></code>
 
         </dt>
         <dd>Lop off trailing "00"s from census tract codes from 2000.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="crosswalk_spec.html">crosswalk_spec()</a></code>
 
         </dt>
         <dd>Compute the names of the columns in a tabulation crosswalk table</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="read_crosswalk.html">read_crosswalk()</a></code>
 
         </dt>
         <dd>Read a file with crosswalk information between the blocks of two consecutive decennial censuses.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="perform_crosswalk.html">perform_crosswalk()</a></code>
 
@@ -234,8 +247,7 @@
 
       <div class="section-desc"><p>Specialized functions that generally build upon more modularly-designed functions from the <a href="%60sf%60">simple features</a> package.</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -246,19 +258,22 @@
 
         </dt>
         <dd>Filter one or more geometries by a reference geometry using a single geometric predicate.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="central_utm.html">central_utm()</a></code>
 
         </dt>
         <dd>Find the median UTM Zone from a vector of longitudes.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="utm_crs.html">utm_crs()</a></code>
 
         </dt>
         <dd>Create a coordinate reference system for a UTM Zone and datum.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="utm_zone_from_longitude.html">utm_zone_from_longitude()</a></code>
 
@@ -274,7 +289,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
