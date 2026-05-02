@@ -65,11 +65,7 @@ SOURCE_FILES <- tibble::tribble(
     2020L,  "Block",              "tl_2020_55_tabblock20"
 ) |>
     dplyr::mutate(
-        Geography = factor(.data$Geography,
-                           levels = c("County Subdivision",
-                                      "Tract",
-                                      "Block Group",
-                                      "Block"))
+        Geography = forcats::fct_inorder(.data$Geography)
     )
 ```
 
@@ -102,12 +98,12 @@ SHAPEFILE_PATHS <- c(
     "Bigger Geos" = FALSE
 ) |>
     purrr::map(
-        \(.should_include) {
+        \(.use_blocks) {
             .tmp <- SOURCE_FILES |>
                 dplyr::filter(
                     stringr::str_detect(.data$Geography,
                                         "Block$",
-                                        negate = !.should_include)
+                                        negate = !.use_blocks)
                 )
             .tmp |>
                 purrr::pmap_chr(
@@ -151,10 +147,25 @@ Finally, we need to do a little post-import cleanup.
 Several of the steps are relevant for both blocks and the other geographies.
 We will combine them into a helper function.
 
+#### Common cleanup steps
+
+The first step is to remove redundant columns.
+These include columns that incorporate portions of the `GEOID`.
+The second step is to join the new table with `SOURCE FILES`.
+The third step is to sort by GEOID.
+The final step is to transform the coordinate system from loathsome lat/long
+into helpful Universal Transverse Mercator (UTM).
+Eastern Wisconsin is in UTM zone 16, according to the
+[USDA](https://efotg.sc.egov.usda.gov/references/public/WI/coordinate_system_comparison.pdf).
+The census shapefiles report lat/long according to the NAD83 standard, so the
+EPSG code for UTM Zone 16 is
+[26916](https://spatialreference.org/ref/epsg/nad83-utm-zone-16n/).
+
+**UPDATE** `hercgeos` can now do all of the UTM conversions for you.
 ```{r}
 #| label: define-wrangling-helper
 
-.UTM_ZONE_IN_EPSG <- 26916L
+# .UTM_ZONE_IN_EPSG <- 26916L
 
 .wrangling_helper <- function(.raw_shapefile, .source_info) {
     .raw_shapefile |>
@@ -171,26 +182,13 @@ We will combine them into a helper function.
         dplyr::arrange(
             .data$GEOID
         ) |>
-        dplyr::mutate(
-            geometry = sf::st_transform(.data$geometry,
-                                        .UTM_ZONE_IN_EPSG)
-        )
+        hercgeos::transform_tiger_to_utm()
+#        dplyr::mutate(
+#            geometry = sf::st_transform(.data$geometry,
+#                                        .UTM_ZONE_IN_EPSG)
+#        )
 }
 ```
-
-#### Common cleanup steps
-
-The first step is to remove redundant columns.
-These include columns that incorporate portions of the `GEOID`.
-The second step is to join the new table with `SOURCE FILES`.
-The third step is to sort by GEOID.
-The final step is to transform the coordinate system from loathsome lat/long
-into helpful Universal Transverse Mercator (UTM).
-Eastern Wisconsin is in UTM zone 16, according to the
-[USDA](https://efotg.sc.egov.usda.gov/references/public/WI/coordinate_system_comparison.pdf).
-The census shapefiles report lat/long according to the NAD83 standard, so the
-EPSG code for UTM Zone 16 is
-[26916](https://spatialreference.org/ref/epsg/nad83-utm-zone-16n/).
 
 ### Wrangle block data
 

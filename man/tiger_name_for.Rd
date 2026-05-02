@@ -7,7 +7,8 @@
 tiger_name_for(
   state,
   year,
-  geography = c("county subunits", "school districts", "places", "tracts", "blocks")
+  geography = c("county subunit", "school district", "place", "tract", "block group",
+    "block")
 )
 }
 \arguments{
@@ -24,5 +25,8 @@ a string such as "tl_2000_55_cousub00"
 Create a tigershape filename based upon state, year, and geography
 }
 \examples{
-tiger_name_for(55L, 2000L, "county subunits")
+tiger_name_for(55L, 2000L, "county subunit")
+tiger_name_for(25L, 2010L, "school district")
+tiger_name_for(10L, 2020L, "place")
+tiger_name_for(2L, 2020L, "block")
 }

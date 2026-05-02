@@ -149,6 +149,7 @@ perform_crosswalk <- function(.blocks, .crosswalk, .vintage) {
                    BLK_NEW = "Block")
         ) |>
         dplyr::mutate(
+            Vintage = .earlier_year,
             Overlap =
                 (.data$AREALAND_INT + .data$AREAWATER_INT) /
                 (.data$AREALAND_OLD + .data$AREAWATER_OLD)
